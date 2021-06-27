@@ -63,7 +63,7 @@ class NetworkingByLatAndLog {
   NetworkingByLatAndLog({required this.longitude, required this.latitude});
 
   Future<List<String>> networking() async {
-    var url = Uri.parse(url1 + "lat=" + latitude + "&lon=" + longitude + "&appid=" + apiKey);
+    var url = Uri.parse(url2 + "lat=" + latitude + "&lon=" + longitude + "&appid=" + apiKey);
     var respondes = await http.get(url);
 
     //required data => temp, hmidity , cloudiness, wing

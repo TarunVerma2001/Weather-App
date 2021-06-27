@@ -69,15 +69,7 @@ class _WeatherShowScreenState extends State<WeatherShowScreen> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  GestureDetector(
-                    onTap: (){
-                      getLocation();
-                      Navigator.push(context, MaterialPageRoute(builder: (context){
-                        return Loading(location: 'London', type: false, longitude: longitude, latitude: latitude);
-                      }));
-                    
-                    },
-                    child: Container(
+                     Container(
                       padding: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
                       decoration: BoxDecoration(
                         border: Border.all(color: Colors.white, width: 0.2),
@@ -92,26 +84,37 @@ class _WeatherShowScreenState extends State<WeatherShowScreen> {
                         )),
                       ),
                     ),
-                  ),
-                  TextButton(
-                    onPressed: () async{
-                      String city = location;
-                      city = await Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) {
-                              return CityNameSelector();
-                            },
-                          ),
-                        );
-                      setState(()  {
-                          location = city[0].toUpperCase() + city.substring(1);
-                      });
-                    },
-                    child: Icon(
-                      CupertinoIcons.add,
-                      size: 30.0,
-                    ),
+                  
+                  Row(
+                    children: [
+                      GestureDetector(onTap: (){
+                      getLocation();
+                      Navigator.push(context, MaterialPageRoute(builder: (context){
+                        return Loading(location: 'London', type: false, longitude: longitude, latitude: latitude);
+                      }));
+                    
+                    },child: Icon(Icons.location_on_outlined, color: Colors.blueAccent,size: 30,)),
+                      TextButton(
+                        onPressed: () async{
+                          String city = location;
+                          city = await Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) {
+                                  return CityNameSelector();
+                                },
+                              ),
+                            );
+                          setState(()  {
+                              location = city[0].toUpperCase() + city.substring(1);
+                          });
+                        },
+                        child: Icon(
+                          CupertinoIcons.add,
+                          size: 30.0,
+                        ),
+                      ),
+                    ],
                   ),
                 ],
               ),
